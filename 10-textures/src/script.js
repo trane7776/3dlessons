@@ -52,7 +52,6 @@ const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
 // colorTexture.rotation = Math.PI * 0.25;
 
 colorTexture.magFilter = THREE.NearestFilter;
-
 /**
  * Base
  */
