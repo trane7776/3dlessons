@@ -23,6 +23,7 @@ scene.add(ambientLight);
 ambientLight.color = new THREE.Color(0xffffff);
 ambientLight.intensity = 0.5;
 scene.add(ambientLight);
+
 /**
  * Objects
  */
