@@ -28,6 +28,15 @@ directionalLight.position.set(2, 2, - 1)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.width = 1024
 directionalLight.shadow.mapSize.height = 1024
+directionalLight.shadow.camera.near = 1;
+directionalLight.shadow.camera.far = 6;
+directionalLight.shadow.camera.top = 2;
+directionalLight.shadow.camera.right = 2;
+directionalLight.shadow.camera.bottom = -2;
+directionalLight.shadow.camera.left = -2;
+directionalLight.shadow.radius = 10;
+
+
 
 gui.add(directionalLight, 'intensity').min(0).max(3).step(0.001)
 gui.add(directionalLight.position, 'x').min(- 5).max(5).step(0.001)
@@ -38,6 +47,9 @@ scene.add(directionalLight)
 
 const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.5)
 scene.add(directionalLightHelper)
+const directionalLightShadowHelper = new THREE.CameraHelper(directionalLight.shadow.camera)
+directionalLightShadowHelper.visible = false
+scene.add(directionalLightShadowHelper)
 
 
 /**
@@ -113,8 +125,8 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-
 renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
 /**
  * Animate
  */
