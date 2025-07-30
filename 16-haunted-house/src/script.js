@@ -131,7 +131,7 @@ house.add(door);
 
 // Windows
 const window1 = new THREE.Mesh(
-    new THREE.PlaneGeometry(1, 1, 100, 100),
+    new THREE.PlaneGeometry(2, 2, 100, 100),
     new THREE.MeshStandardMaterial({
         map: windowColorTexture,
         alphaMap: windowAlphaTexture,
@@ -145,21 +145,25 @@ const window1 = new THREE.Mesh(
     })
 )
 window1.geometry.setAttribute('uv2', new THREE.Float32BufferAttribute(window1.geometry.attributes.uv.array, 2))
-window1.position.set(-2 - 0.01, 1.5, 0) // центр левой стены
-window1.rotation.y = Math.PI * 0.5 // повернуть кнаружи
+window1.position.set(-2 - 0.1 , 1.5, 0) // центр левой стены
+window1.rotation.y = - Math.PI * 0.5 // повернуть кнаружи
 house.add(window1)
 
 // Сделать область стены за окном прозрачной
-const windowMaskGeometry = new THREE.PlaneGeometry(1, 1)
-const windowMaskMaterial = new THREE.MeshStandardMaterial({
+// Вырезаем "прозрачный кубик" в стене, совпадающий с окном
+const windowCutGeometry = new THREE.BoxGeometry(2, 2, 0.05)
+const windowCutMaterial = new THREE.MeshStandardMaterial({
     color: '#ffffff',
     transparent: true,
     opacity: 0,
+    depthWrite: false,
+    side: THREE.DoubleSide
 })
-const windowMask = new THREE.Mesh(windowMaskGeometry, windowMaskMaterial)
-windowMask.position.set(-2, 1.5, 0.01)
-windowMask.rotation.y = Math.PI * 0.5
-house.add(windowMask)
+const windowCut = new THREE.Mesh(windowCutGeometry, windowCutMaterial)
+windowCut.position.set(-2, 1.5, 0)
+windowCut.rotation.y = - Math.PI * 0.5 // повернуть кнаружи
+windowCut.castShadow = false;
+house.add(windowCut)
 
 // Bushes
 
