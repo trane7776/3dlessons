@@ -149,22 +149,6 @@ window1.position.set(-2 - 0.1 , 1.5, 0) // центр левой стены
 window1.rotation.y = - Math.PI * 0.5 // повернуть кнаружи
 house.add(window1)
 
-// Сделать область стены за окном прозрачной
-// Вырезаем "прозрачный кубик" в стене, совпадающий с окном
-const windowCutGeometry = new THREE.BoxGeometry(2, 2, 0.05)
-const windowCutMaterial = new THREE.MeshStandardMaterial({
-    color: '#ffffff',
-    transparent: true,
-    opacity: 0,
-    depthWrite: false,
-    side: THREE.DoubleSide
-})
-const windowCut = new THREE.Mesh(windowCutGeometry, windowCutMaterial)
-windowCut.position.set(-2, 1.5, 0)
-windowCut.rotation.y = - Math.PI * 0.5 // повернуть кнаружи
-windowCut.castShadow = false;
-house.add(windowCut)
-
 // Bushes
 
 const bushGeometry = new THREE.SphereGeometry(1, 16, 16)
