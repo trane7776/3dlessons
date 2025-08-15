@@ -17,6 +17,8 @@ const scene = new THREE.Scene()
 /**
  * Galaxy
  */
+ 
+ 
 
 const parameters = {}
 parameters.count = 1000;
